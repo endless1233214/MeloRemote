@@ -3,6 +3,9 @@ import SwiftUI
 struct SettingsView: View {
     @EnvironmentObject private var model: AppModel
 
+    @State private var isRefreshing = false
+    @State private var refreshSucceeded = false
+
     var body: some View {
         List {
             Section {
@@ -74,13 +77,51 @@ struct SettingsView: View {
 
             Section {
                 Button {
+                    guard !isRefreshing else { return }
+
+                    isRefreshing = true
+                    refreshSucceeded = false
+                    model.errorMessage = nil
+
                     Task {
                         await model.refresh()
+                        isRefreshing = false
+
+                        if model.errorMessage == nil {
+                            withAnimation {
+                                refreshSucceeded = true
+                            }
+                        }
                     }
                 } label: {
+                    HStack(spacing: 10) {
+                        if isRefreshing {
+                            ProgressView()
+                                .controlSize(.small)
+                        } else {
+                            Image(systemName: "arrow.clockwise")
+                        }
+
+                        Text(
+                            isRefreshing
+                                ? "Refreshing Server Data…"
+                                : "Refresh Server Data"
+                        )
+                    }
+                }
+                .disabled(isRefreshing)
+
+                if refreshSucceeded {
                     Label(
-                        "Refresh Server Data",
-                        systemImage: "arrow.clockwise"
+                        "Server data refreshed",
+                        systemImage: "checkmark.circle.fill"
+                    )
+                    .font(.footnote)
+                    .foregroundStyle(.green)
+                    .transition(
+                        .opacity.combined(
+                            with: .move(edge: .top)
+                        )
                     )
                 }
 

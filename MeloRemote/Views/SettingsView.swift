@@ -5,6 +5,7 @@ struct SettingsView: View {
 
     @State private var isRefreshing = false
     @State private var refreshSucceeded = false
+    @State private var isShowingSignOutConfirmation = false
 
     var body: some View {
         List {
@@ -126,7 +127,7 @@ struct SettingsView: View {
                 }
 
                 Button(role: .destructive) {
-                    model.logout()
+                    isShowingSignOutConfirmation = true
                 } label: {
                     Label(
                         "Sign Out",
@@ -137,5 +138,16 @@ struct SettingsView: View {
         }
         .listStyle(.insetGrouped)
         .navigationTitle("Settings")
+        .alert(
+            "Sign Out?",
+            isPresented: $isShowingSignOutConfirmation
+        ) {
+            Button("Cancel", role: .cancel) {}
+            Button("Sign Out", role: .destructive) {
+                model.logout()
+            }
+        } message: {
+            Text("You’ll need to sign in again to reconnect to this Music Assistant server.")
+        }
     }
 }

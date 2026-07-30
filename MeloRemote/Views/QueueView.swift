@@ -66,11 +66,11 @@ struct QueueView: View {
             switch (lhs.index, rhs.index) {
             case let (left?, right?):
                 return left < right
-            case (.some, .none):
+            case (_?, nil):
                 return true
-            case (.none, .some):
+            case (nil, _?):
                 return false
-            case (.none, .none):
+            case (nil, nil):
                 return false
             }
         }

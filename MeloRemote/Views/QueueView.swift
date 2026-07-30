@@ -62,10 +62,39 @@ struct QueueView: View {
     }
 
     private var upNextItems: [MAQueueItem] {
-        guard let currentID = model.activeQueue?.currentItem?.queueItemID else {
-            return model.queueItems
+        let sortedItems = model.queueItems.sorted { lhs, rhs in
+            switch (lhs.index, rhs.index) {
+            case let (left?, right?):
+                return left < right
+            case (.some, .none):
+                return true
+            case (.none, .some):
+                return false
+            case (.none, .none):
+                return false
+            }
         }
-        return model.queueItems.filter { $0.queueItemID != currentID }
+
+        guard let queue = model.activeQueue else {
+            return sortedItems
+        }
+
+        let currentIndex = queue.currentIndex ?? queue.currentItem?.index
+
+        if let currentIndex {
+            return sortedItems.filter { item in
+                guard let itemIndex = item.index else {
+                    return item.queueItemID != queue.currentItem?.queueItemID
+                }
+                return itemIndex > currentIndex
+            }
+        }
+
+        guard let currentID = queue.currentItem?.queueItemID else {
+            return sortedItems
+        }
+
+        return sortedItems.filter { $0.queueItemID != currentID }
     }
 
     private func queueRow(_ item: MAQueueItem, isCurrent: Bool) -> some View {

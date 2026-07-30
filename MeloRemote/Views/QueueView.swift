@@ -62,39 +62,22 @@ struct QueueView: View {
     }
 
     private var upNextItems: [MAQueueItem] {
-        let sortedItems = model.queueItems.sorted { lhs, rhs in
-            switch (lhs.index, rhs.index) {
-            case let (left?, right?):
-                return left < right
-            case (_?, nil):
-                return true
-            case (nil, _?):
-                return false
-            case (nil, nil):
-                return false
-            }
+        guard let currentID = model.activeQueue?.currentItem?.queueItemID else {
+            return model.queueItems
         }
 
-        guard let queue = model.activeQueue else {
-            return sortedItems
+        // Music Assistant returns queue items in their effective playback order,
+        // including shuffled queues. Keep that order and show only the items
+        // that follow the currently playing item.
+        if let currentPosition = model.queueItems.firstIndex(
+            where: { $0.queueItemID == currentID }
+        ) {
+            return Array(model.queueItems.dropFirst(currentPosition + 1))
         }
 
-        let currentIndex = queue.currentIndex ?? queue.currentItem?.index
-
-        if let currentIndex {
-            return sortedItems.filter { item in
-                guard let itemIndex = item.index else {
-                    return item.queueItemID != queue.currentItem?.queueItemID
-                }
-                return itemIndex > currentIndex
-            }
-        }
-
-        guard let currentID = queue.currentItem?.queueItemID else {
-            return sortedItems
-        }
-
-        return sortedItems.filter { $0.queueItemID != currentID }
+        // If the current item is temporarily absent while queue events update,
+        // avoid duplicating it without hiding the rest of the queue.
+        return model.queueItems.filter { $0.queueItemID != currentID }
     }
 
     private func queueRow(_ item: MAQueueItem, isCurrent: Bool) -> some View {

@@ -1,8 +1,8 @@
 # MeloRemote Privacy Policy
 
-Effective date: September 13, 2026
+Effective date: September 14, 2026
 
-MeloRemote is an unofficial native remote for self-hosted Music Assistant servers. It is distributed for Android through Google Play and for Apple platforms through the App Store. This policy explains what the app handles when you connect it to your own server.
+MeloRemote is an unofficial native remote for self-hosted Music Assistant servers. The Android edition is preparing to enter Google Play review, the Mac edition is distributed through the Mac App Store, and the iPhone and iPad edition is available through TestFlight. This policy explains what the app handles when you connect it to your own server.
 
 ## Summary
 
@@ -10,7 +10,7 @@ MeloRemote connects directly from your device to the Music Assistant server addr
 
 ## Store Distribution
 
-Google and Apple distribute MeloRemote through their respective app stores. They may process download, installation, purchase, account, device, usage, diagnostic, and crash information under their own privacy policies and device settings. VersaRepair may receive aggregated store metrics or diagnostic reports made available by those platforms.
+Apple distributes MeloRemote through the Mac App Store and TestFlight. Google is preparing to distribute the Android edition through Google Play. They may process download, installation, purchase, account, device, usage, diagnostic, crash, review, and beta-feedback information under their own privacy policies and device settings. VersaRepair may receive aggregated store metrics, diagnostic reports, or tester feedback made available by those platforms.
 
 ## Information Stored on Your Device
 
@@ -20,7 +20,11 @@ Google and Apple distribute MeloRemote through their respective app stores. They
 - **Password:** Your password is used to request a Music Assistant token when you choose account login. MeloRemote does not save your password.
 - **App preferences:** Basic settings such as the selected authentication mode and selected output or player may be stored locally.
 
-MeloRemote disables Android cloud backup and device-transfer backup for its app data.
+MeloRemote disables Android cloud backup and device-transfer backup for its app data. Clearing the app's storage or uninstalling it removes the locally saved preferences and encrypted token from that installation.
+
+## Android Permissions and Dependencies
+
+The Android app declares Internet access so it can connect to the server address the user supplies. It does not request location, nearby-device, contacts, microphone, camera, photo-library, storage, notification, advertising ID, or billing permissions. The release uses AndroidX, Jetpack Compose, Kotlin coroutines, OkHttp, and Gson; it does not include Firebase, an advertising SDK, or a third-party analytics SDK.
 
 ## Information Processed From Your Server
 
@@ -34,9 +38,13 @@ These actions affect your own Music Assistant server and connected providers acc
 
 ## Network Access
 
-MeloRemote uses network access to reach Music Assistant servers and players on your home network. The app communicates with your server using HTTP or HTTPS requests and WebSocket messages. Your device must be able to reach the server through a local network, VPN, or another route you configure. Artwork may load through your server's Music Assistant image proxy.
+MeloRemote uses network access to reach Music Assistant servers and players on your home network. The app communicates with your server using HTTP or HTTPS requests and WebSocket or secure WebSocket messages. Your device must be able to reach the server through a local network, VPN, or another route you configure. Artwork may load through your server's Music Assistant image proxy.
 
 If you use an unencrypted HTTP connection, data sent between your device and server—including authentication information—may be visible to others with access to that network. Use HTTPS or a trusted private network whenever possible.
+
+## Payments
+
+MeloRemote is planned as a one-time paid Android app distributed through Google Play and is sold on Apple's store for supported Apple platforms. Apple or Google processes the store purchase, payment method, tax, refund, and purchase-account information under its own policies. VersaRepair does not receive your full card number, bank credentials, Apple Account password, or Google Account password through the app. MeloRemote has no in-app purchase or subscription in the audited Android version.
 
 ## Audio, Media, Advertising, and Tracking
 
@@ -56,6 +64,10 @@ If you contact VersaRepair LLC for support, the information you choose to send t
 ## Children
 
 MeloRemote is a general music-control utility and is not specifically directed to children under 13. VersaRepair does not knowingly collect personal information from children through the app.
+
+## Account and Data Deletion
+
+MeloRemote does not create a VersaRepair account or store app data on a VersaRepair backend, so there is no MeloRemote cloud account to delete. Signing out deletes the saved authentication token from MeloRemote on that device. Clearing app storage or uninstalling removes the remaining app-local information. Server-side users, tokens, logs, providers, playlists, favorites, and library data are controlled through the user's Music Assistant server.
 
 ## Changes to This Policy
 

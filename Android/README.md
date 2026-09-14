@@ -49,4 +49,4 @@ Never commit the keystore or signing secrets. The Play upload artifact is genera
 - Complete the privacy policy, Data safety, content rating, target-audience, app-access, ads, and store-listing declarations.
 - Upload an internal-testing AAB first, resolve the automated pre-launch report, then promote through closed testing to production.
 
-The 512px store icon is at `play/listing-icon-512.png`. Screenshots, feature graphic, privacy-policy URL, release notes, and the upload keystore are intentionally left for the Play Console phase.
+Google Play materials are under `play/`: the 512 px listing icon, 1024 × 500 feature graphic, five phone screenshots, store listing copy, privacy-policy update, release-readiness notes, and release notes. The upload keystore and signing secrets remain intentionally outside the repository.

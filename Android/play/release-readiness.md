@@ -20,9 +20,19 @@
 - Store category set to Music & Audio
 - Public Play Store contact set to `contact@versarepair.com` and
   `https://versarepair.com/app-development/support/` (phone left blank)
-- Google Play initial setup progress: 8 of 13 tasks complete
+- Google Play initial setup: all 13 tasks complete
 - In-app Privacy Policy and Support links added to Settings
 - Cross-platform privacy policy updated and published at the Play Console URL on September 14, 2026
+- Published privacy-policy URL saved in Google Play Console
+- Reviewer access saved for the HTTPS Music Assistant test server
+- Target audience completed for ages 13-15, 16-17, and 18 and over
+- IARC content rating completed: All Other App Types, online content, no
+  restricted-content descriptors; generated ratings are all-ages/Everyone/PEGI 3
+- Data Safety completed conservatively: User IDs, app interactions, and in-app
+  search activity collected only for app functionality/account access; no sharing;
+  transport is not declared universally encrypted because HTTP/WS remains supported
+- Advertising ID declaration completed: app and included SDKs do not use Advertising ID
+- Google Play App content reports no declarations requiring attention
 - Login now warns users when a server connection is not encrypted with HTTPS
 - Compliance changes verified with unit tests, Android lint, and a debug APK build
 
@@ -35,8 +45,6 @@
 
 ## Required in Google Play Console
 
-- Complete app access instructions for Play review
-- Complete content rating, target audience, and data safety declarations
 - Create an internal-test release, verify installation, then promote to production
 
 Play Console declarations and pricing require the developer's confirmation because

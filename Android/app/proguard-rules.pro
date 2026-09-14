@@ -1,0 +1,5 @@
+-keepattributes Signature,*Annotation*
+-keep class com.versarepair.meloremote.data.model.** { *; }
+-dontwarn org.conscrypt.**
+-dontwarn org.bouncycastle.**
+-dontwarn org.openjsse.**

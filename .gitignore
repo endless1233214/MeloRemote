@@ -61,3 +61,47 @@ fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
 .DS_Store
+
+# Repository hygiene
+# OS and archive metadata
+._*
+.AppleDouble/
+.LSOverride
+__MACOSX/
+.Spotlight-V100/
+.Trashes/
+.fseventsd/
+.TemporaryItems/
+.apdisk
+Thumbs.db
+Desktop.ini
+
+# Xcode and Apple dependency output
+DerivedData/
+*.xcuserstate
+*.xcresult
+*.xcarchive/
+Pods/
+Pods.*/
+.swiftpm/xcode/package.xcworkspace/xcuserdata/
+
+# Local configuration and temporary files
+.env
+.env.*
+!.env.example
+!.env.*.example
+*.log
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# Android / Gradle
+.gradle/
+**/build/
+Android/local.properties
+Android/.idea/
+Android/*.iml
+*.jks
+*.keystore
